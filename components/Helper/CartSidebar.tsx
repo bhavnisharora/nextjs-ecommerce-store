@@ -1,11 +1,8 @@
 import React from "react";
-import { Product } from "@/typing";
 import { addItem, CartItem, removeItem } from "@/store/cartSlice";
 import Image from "next/image";
-import { it } from "node:test";
 import { Button } from "../ui/button";
 import Link from "next/link";
-import { SheetClose } from "../ui/sheet";
 import { useDispatch } from "react-redux";
 
 type Props = {

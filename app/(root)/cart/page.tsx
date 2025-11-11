@@ -41,7 +41,7 @@ const Cart = () => {
 
   // handle payment success
 
-  const handleSuccess = (details: any) => {
+  const handleSuccess = () => {
     router.push("/success");
     dispatch(clearCart());
   };

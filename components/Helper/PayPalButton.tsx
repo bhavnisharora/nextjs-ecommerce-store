@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from "react";
 import {
   FUNDING,
@@ -23,9 +22,11 @@ const PayPalButton = ({ amount, onSuccess }: PayPalButtonProps) => {
         fundingSource={FUNDING.PAYPAL}
         createOrder={(data, actions) => {
           return actions.order.create({
-            purchase_units : [
+            intent: "CAPTURE", 
+            purchase_units: [
               {
                 amount: {
+                  currency_code: "USD",
                   value: amount,
                 },
               },
@@ -33,7 +34,7 @@ const PayPalButton = ({ amount, onSuccess }: PayPalButtonProps) => {
           });
         }}
         onApprove={(data, actions) => {
-          return actions.order.capture().then((details) => {
+          return actions.order!.capture().then((details) => {
             onSuccess(details);
           });
         }}
