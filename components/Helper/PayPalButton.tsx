@@ -1,4 +1,3 @@
-//  @typescript-eslint/no-explicit-any
 import React from "react";
 import {
   FUNDING,
@@ -6,9 +5,24 @@ import {
   PayPalScriptProvider,
 } from "@paypal/react-paypal-js";
 
+interface PayPalOrderDetails {
+  id: string;
+  status: string;
+  payer: {
+    name?: { given_name?: string; surname?: string };
+    email_address?: string;
+  };
+  purchase_units: {
+    amount: {
+      currency_code: string;
+      value: string;
+    };
+  }[];
+}
+
 interface PayPalButtonProps {
   amount: string;
-  onSuccess: (details: any) => void;
+  onSuccess: (details: PayPalOrderDetails) => void;
 }
 
 const PayPalButton = ({ amount, onSuccess }: PayPalButtonProps) => {
@@ -23,7 +37,7 @@ const PayPalButton = ({ amount, onSuccess }: PayPalButtonProps) => {
         fundingSource={FUNDING.PAYPAL}
         createOrder={(data, actions) => {
           return actions.order.create({
-            intent: "CAPTURE", 
+            intent: "CAPTURE",
             purchase_units: [
               {
                 amount: {
@@ -36,7 +50,7 @@ const PayPalButton = ({ amount, onSuccess }: PayPalButtonProps) => {
         }}
         onApprove={(data, actions) => {
           return actions.order!.capture().then((details) => {
-            onSuccess(details);
+            onSuccess(details as PayPalOrderDetails);
           });
         }}
       />

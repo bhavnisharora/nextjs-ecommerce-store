@@ -1,4 +1,3 @@
-// @typescript-eslint/no-unused-expressions
 import React from "react";
 import { Product } from "@/typing";
 import { getProductByCategory, getSingleProduct } from "@/request/Request";
@@ -18,7 +17,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
   const num = Math.round(singleProduct?.rating?.rate);
 
   const starArray = new Array(num).fill(0);
-  ``;
+
   console.log(starArray, "starArray");
 
   return (
@@ -100,5 +99,5 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
     </div>
   );
 };
-``;
+
 export default ProductDetails;
