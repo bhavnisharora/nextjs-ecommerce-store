@@ -1,3 +1,4 @@
+// @typescript-eslint/no-unused-expressions
 import React from "react";
 import { Product } from "@/typing";
 import { getProductByCategory, getSingleProduct } from "@/request/Request";
